@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>webQQ</title>
+<link rel="shortcut icon" type="image/ico"  href="images/favicon.ico">
+<link rel="stylesheet" type="text/css" href="img/indexcss.css">
+<script type="text/javascript" src="../js/Ls.js"></script>
+<script type="text/javascript" src="js/webChat.js"></script>
+<script type="text/javascript" src="js/jsarea.js"></script>
+
+</head>
+<body>
+<!--加载-->
+<div id="startingCover" style="display:block;">
+		<div id="startingLogo"></div>
+		<div id="startingText">Starting ...</div>
+		<div id="startingBarContainer"><div id="startingBar" style="width: 0%;"></div></div>
+		<div id="startingTips" title="onload">0%</div>
+</div>
+<div id="progress" style="display:none;"></div>
+<!--天气预报-->
+<div style="left: 918px; top: 78px;display:none;" class="weather" id="weather" >
+	<div style="display: none;" class="weather_close" id="weatherc_close"></div>
+	<div class="weather_su" id="weather_s"><img src="img/n2.gif"/></div>
+	<div class="weather_tom" id="weather_t"><strong>今天：</strong>阴 5℃~14℃</div>
+	<a href="javascript:;" class="region" id="region_but">请选择地区</a>
+	<div class="weather_time" id="weather_time">更新时间..</div>
+	<div class="weather_menu">
+		<div id="weather_menu">
+		
+		</div>
+		<input value="确定" class="we_but1" type="button" id="submit">
+		<input value="取消" type="button" id="cancel">
+	</div>
+</div>
+<!-- 桌面导航 -->
+<div style="display: none; z-index: 100;" class="fast_nav_bg" id="fast_bg"><img src="img/login_layerBg.png" alt=""></div>
+<!--个人信息-->
+<div style="right: 63px; top: 33px;" id="person_shadow_bg" class="shadow">
+	<span style="display: none;" class="shadow_close"></span>
+	<img src="img/fast_nav.png" alt="" class="shadow_img" id="shadow">
+	<div class="fastNavBox_tran_01">
+		<p class="hr"></p>
+		<h3 class="shadow_title1">何礼</h3>
+		<ul>
+			<li>男 |  24岁</li>
+			<li>居住地：深圳</li>
+			<li>电　话：13088846831（手机）</li>
+			<li>E-mail:355564170@qq.com</li>
+		</ul>
+	</div>
+	<div  class="fastNavBox_tran_02">
+		<p class="hr"></p>
+		<h3 class="shadow_title2">工作经历</h3>
+		<ul>
+			<li>最近工作</li>
+			<li>公　司： 长沙尚品企划</li>
+			<li>职　位： 前端制作</li>
+			<li>最高学历： 大专</li>
+		</ul>
+	</div>
+	<div class="fastNavBox_tran_03">
+		<ul>
+			<li>2012.3--2012.12  长沙晋大人力资源有限公司</li>
+			<li>芙蓉人才网：<a href="http://www.frrc.com.cn/" target="_blank">Http://www.frrc.com.cn/</a></li>
+			<li>2013.3--2013.12  长沙尚品企划</li>
+			<li>中华卫浴网：<a href="http://www.chinaweiyu.com/" target="_blank">Http://www.chinaweiyu.com/</a></li>
+
+		</ul>
+		<p class="hr"></p>
+		<h3 class="shadow_title4">工作经验</h3>
+	</div>
+	<div class="fastNavBox_tran_04">
+		<ul>
+			<li>1.熟练CSS+DIV,手写代码,对代码优化有一定了解</li>
+			<li>2.熟练书写原生javascript脚本,实现JS效果研发需求</li>
+			<li>3.熟练常见浏览器不同版本兼容性解决方法</li>
+			<li>4.熟悉PHP,MYSQL,linux,网络工程技术</li>
+		</ul>
+		<p class="hr"></p>
+		<h3 class="shadow_title3">专业技能</h3>
+	</div>
+</div>
+<!-- 时钟 -->
+<div class="web_titles_main" id="web_titles" style="display:none;">
+		<div id="clock_close" class="clock_close" style="display: none;"></div>
+		<div class="web_title_box" id="title_box">
+			<div id="box">
+				<div id="dial"></div>
+				 <div id="hand">
+					<div id="hour" ></div>
+					<div id="min" ></div>
+					<div id="sec" ></div>
+					<div id="centre"></div>
+				</div>
+			</div>
+		</div>
+</div>
+
+<!-- 右键菜单-->
+<div class="text_menu" id="text_menu">
+	<ul id="text_menu_ul">
+		<li><a href="javascript:;">显示桌面</a></li>
+		<li class="menu_bottom" id="menu_bottom"><a href="javascript:;">刷新</a></li>
+		<li>
+			<a href="javascript:;">排列方式<span></span></a>
+			<ul id="client_but">
+				<li><a href="javascript:;">横向</a></li>
+				<li class="active"><a href="javascript:;">纵向</a></li>
+				<li><a href="javascript:;">自由排列</a></li>
+			</ul>
+		</li>
+		<li class="menu_bottom" id="upFile"><a href="javascript:;">上传文件</a></li>
+		<li id="Theme" class="menu_bottom"><a href="javascript:;">主题设置</a></li>
+		<li><a href="javascript:;">系统设置</a></li>
+		<li class="menu_bottom">
+			<a href="javascript:;">图标设置<span></span></a>
+			<ul id="icon_but">
+				<li><a href="javascript:;">小图标</a></li>
+				<li class="active"><a href="javascript:;">大图标</a></li>
+				<li><a href="javascript:;">超大图标</a></li>
+			</ul>
+		</li>
+		<li><a href="javascript:;">反馈</a></li>
+		<li><a href="javascript:;" id="reload">注销</a></li>
+	</ul>
+</div> 
+<!-- 窗口 -->
+<div style="display: none; height:400px; width: 800px; opacity: 1; left: 273px; top: 91px;" class="web_box" id="box1">
+	<div class="web_box_top" id="web_top_c">
+		<p id="boxTitle">加载中...</p>
+		<div class="web_box_wiw" id="web_box_wiw">
+			<a href="javascript:;" class="reduce"></a>
+			<a href="javascript:;" class="magnify"></a>
+			<a href="javascript:;" class="close"></a>
+		</div>
+	</div>
+	<div class="web_box_content" id="box_content">
+		<iframe src="case/loading.html" id="boxHref" >
+		</iframe>
+	</div>
+</div>
+<!--换肤box-->
+
+<div class="web_box1" id="box2">
+	<div class="web_box_top" id="web_top_cBg">
+		<p id="boxTitleBg"></p>
+		<div class="web_box_wiw" id="web_box_wiw1">
+			<a href="javascript:;" class="close1"></a>
+		</div>
+	</div>
+	<div class="web_box_content web_box_content_hf" id="box_content" style="display:block;">
+		<ul class="skin_ul clearfix" id="skin_img">
+			<li>
+				<img src="img/bg1.jpg" alt="">
+				<p>茫茫野草</p>
+			</li>
+			<li>
+				<img src="img/bg2.jpg" alt="">
+				<p>蒲英之梦</p>
+			</li>
+			<li>
+				<img src="img/bg5.jpg" alt="">
+				<p>水梦年华</p>
+			</li>
+			<li>
+				<img src="img/bg8.jpg" alt="">
+				<p>温馨木纹</p>
+			</li>
+			<li>
+				<img src="img/bg10.jpg" alt="">
+				<p>深海仰望</p>
+			</li>
+			<li>
+				<img src="img/bg11.jpg" alt="">
+				<p>梦醒时分</p>
+			</li>
+		</ul>
+	</div>
+
+</div>
+<!--上传文件-->
+<div class="web_box1" id="box3" style="display:none;">
+	<div class="web_box_top" id="web_top_up">
+		<p id="boxTitleUp"></p>
+		<p id="">上传文件</p>
+		<div class="web_box_wiw" id="web_box_wiw2">
+			<a href="javascript:;" class="close1"></a>
+		</div>
+	</div>
+	<div class="web_box_content web_box_content_hf" id="box_content" style="display:block;">
+		<form id="uploadForm" action="upFile_ok.php">
+		  <table border="0" cellspacing="1" class="fu_list">
+			<thead>
+			  <tr>
+				<td colspan="2"><b>上传文件</b></td>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<td align="right" width="15%" style="line-height:35px;">添加文件：</td>
+				<td>
+					<a href="javascript:void(0);" class="files" id="idFile"></a> 
+					<img id="idProcess" style="display:none;" src="img/loading.gif" />
+				</td>
+			  </tr>
+			  <tr>
+				<td colspan="2"><table border="0" cellspacing="0">
+					<thead>
+					  <tr>
+						<td>文件路径</td>
+						<td width="100"></td>
+					  </tr>
+					</thead>
+					<tbody id="idFileList">
+					</tbody>
+				  </table></td>
+			  </tr>
+			  <tr>
+				<td colspan="2" style="color:gray">温馨提示：最多可同时上传 <b id="idLimit"></b> 个文件，只允许上传 <b id="idExt"></b> 文件。 </td>
+			  </tr>
+			  <tr>
+				<td colspan="2" align="center" id="idMsg">
+					<input type="button" value="开始上传" id="idBtnupload" disabled="disabled" />
+				  &nbsp;&nbsp;&nbsp;
+				  <input type="button" value="全部取消" id="idBtndel" disabled="disabled" />
+				</td>
+			  </tr>
+			</tbody>
+		  </table>
+		</form>
+
+	</div>
+</div>
+
+
+<!--背景-->
+
+<div class="web_main abs">
+	<img src="img/bg11.jpg" alt="" class="bg abs" id="web_bg">
+</div>
+
+<!--头部导航-->
+<div class="web_top abs">
+	<div class="web_top_cn">
+		<div class="web_top_icon" id="web_top">
+			<a href="javascript:;"><img src="img/avatar.png" alt="" height="24" width="24"></a>
+		</div>
+		<ul class="web_top_focus clearfix" id="foucs1">
+			<li class="active"><a href="javascript:;">1</a></li>
+			<li class=""><a href="javascript:;">2</a></li>
+			<li class=""><a href="javascript:;">3</a></li>
+			<li class=""><a href="javascript:;">4</a></li>
+			<li class=""><a href="javascript:;">5</a></li>
+		</ul>
+		<div class="web_top_fl">
+			<a href="javascript:;" class="c_fa"></a><a href="javascript:;" class="c_ss"></a>
+		</div>
+	</div>
+</div>
+<!--桌面图标-->
+<div class="web_content abs">
+	<div class="task" id="task_main">
+		<div style="display: none; width: 0px;" class="task_menu_cn" id="task_x">
+			<div class="task_menu" id="task_menu">
+				<h4 class="task_title" id="task_title1"></h4>
+				<a class="task_max"></a>
+				<a class="task_close"></a>
+			</div>
+		</div>
+	</div>
+	<div class="web_content_cn abs" id="web_content_cn">
+		<ul style="">
+			<li  title="欢乐斗地主">
+				<a href="javascript:;">
+					<span><img src="img/d_big_11.png"></span>
+					<b>
+						<i>
+							<em>欢乐斗地主</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="3366">
+				<a href="javascript:;">
+					<span><img src="img/d_big_12.png"></span>
+					<b>
+						<i>
+							<em>3366</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="QQ宝贝">
+				<a href="javascript:;">
+					<span><img src="img/d_big_13.png"></span>
+					<b>
+						<i>
+							<em>QQ宝贝</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="单页作品">
+				<a href="javascript:;">
+					<span><img src="img/zx.png"></span>
+					<b>
+						<i>
+							<em>单页作品</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="整站作品--tips:加载期间会影响性能，会出现卡的现象，关闭恢复正常">
+				<a href="javascript:;">
+					<span><img src="img/zx.png"></span>
+					<b>
+						<i>
+							<em>整站作品</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="说明文档">
+				<a href="javascript:;">
+					<span><img src="img/zx.png"></span>
+					<b>
+						<i>
+							<em>说明文档</em>
+						</i>
+					</b>
+				</a>
+			</li>
+		</ul>
+		<ul style="">
+			<li  title="芒果旅游">
+				<a href="javascript:;">
+					<span><img src="img/d_big_21.png"></span>
+					<b>
+						<i>
+							<em>芒果旅游</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="团购地图">
+				<a href="javascript:;">
+					<span><img src="img/d_big_22.png"></span>
+					<b>
+						<i>
+							<em>团购地图</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="快递查询">
+				<a href="javascript:;">
+					<span><img src="img/d_big_23.png"></span>
+					<b>
+						<i>
+							<em>快递查询</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="便签">
+				<a href="javascript:;">
+					<span><img src="img/d_big_24.png"></span>
+					<b>
+						<i>
+							<em>便签</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="网络硬盘">
+				<a href="javascript:;">
+					<span><img src="img/d_big_25.png"></span>
+					<b>
+						<i>
+							<em>网络硬盘</em>
+						</i>
+					</b>
+				</a>
+			</li>
+		</ul>
+		<ul style="">
+			<li  title="金山快盘">
+				<a href="javascript:;">
+					<span><img src="img/big01.png"></span>
+					<b>
+						<i>
+							<em>金山快盘</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="浏览网页">
+				<a href="javascript:;">
+					<span><img src="img/big02.png"></span>
+					<b>
+						<i>
+							<em>浏览网页</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="哈哈">
+				<a href="javascript:;">
+					<span><img src="img/big03.png"></span>
+					<b>
+						<i>
+							<em>哈哈</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="哈">
+				<a href="javascript:;">
+					<span><img src="img/big04.png"></span>
+					<b>
+						<i>
+							<em>哈</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="hello">
+				<a href="javascript:;">
+					<span><img src="img/big05.png"></span>
+					<b>
+						<i>
+							<em>hello</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="555">
+				<a href="javascript:;">
+					<span><img src="img/big06.png"></span>
+					<b>
+						<i>
+							<em>555</em>
+						</i>
+					</b>
+				</a>
+			</li>
+		</ul>
+		<ul style="">
+			<li  title="起点中文">
+				<a href="javascript:;">
+					<span><img src="img/d_big_41.png"></span>
+					<b>
+						<i>
+							<em>起点中文</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="QQ阅读">
+				<a href="javascript:;">
+					<span><img src="img/d_big_42.png"></span>
+					<b>
+						<i>
+							<em>QQ阅读</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="音乐盒子">
+				<a href="javascript:;">
+					<span><img src="img/d_big_43.png"></span>
+					<b>
+						<i>
+							<em>音乐盒子</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="腾讯视频">
+				<a href="javascript:;">
+					<span><img src="img/d_big_44.png"></span>
+					<b>
+						<i>
+							<em>腾讯视频</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="乐视网">
+				<a href="javascript:;">
+					<span><img src="img/d_big_45.png"></span>
+					<b>
+						<i>
+							<em>乐视网</em>
+						</i>
+					</b>
+				</a>
+			</li>
+		</ul>
+		<ul style="">
+			<li  title="朋友网">
+				<a href="javascript:;">
+					<span><img src="img/d_big_51.png"></span>
+					<b>
+						<i>
+							<em>朋友网</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="QQ阅读">
+				<a href="javascript:;">
+					<span><img src="img/d_big_52.png"></span>
+					<b>
+						<i>
+							<em>QQ阅读</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="好友管理">
+				<a href="javascript:;">
+					<span><img src="img/d_big_53.png"></span>
+					<b>
+						<i>
+							<em>好友管理</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="开开">
+				<a href="javascript:;">
+					<span><img src="img/d_big_54.png"></span>
+					<b>
+						<i>
+							<em>开开</em>
+						</i>
+					</b>
+				</a>
+			</li>
+			<li  title="开心交友">
+				<a href="javascript:;">
+					<span><img src="img/d_big_55.png"></span>
+					<b>
+						<i>
+							<em>开心交友</em>
+						</i>
+					</b>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<!--左侧导航-->
+<div class="web_main_menu abs">
+	<div class="web_main_menu_cn">
+		<ul class="clearfix" id="web_menu">
+			<li title="应用市场" class="li">
+				<a href="javascript:;"><img src="img/big0.png" alt="" height="35" width="35"></a>
+			</li>
+			<li title="我的网盘" class="li">
+				<a href="javascript:;"><img  src="img/big1.png" alt="" height="35" width="35"></a>
+			</li>
+			<li title="QQ" id="q_Login">
+				<a href="javascript:;"><img  src="img/big2.png" alt="" height="35" width="35"></a>
+			</li>
+			<li title="QQ空间" class="li">
+				<a href="javascript:;"><img  src="img/big3.png" alt="" height="35" width="35"></a>
+			</li>
+			<li title="QQ邮箱" class="li">
+				<a href="javascript:;"><img  src="img/big4.png" alt="" height="35" width="35"></a>
+			</li>
+			<li title="腾讯微博" class="li">
+				<a href="javascript:;"><img  src="img/big5.png" alt="" height="35" width="35"></a>
+			</li>
+		</ul>
+	</div>
+	<div class="web_main_menu_foucs  abs">
+		<ul class="clearfix">
+			<li><a href="javascript:;" class="menu_focus1"></a></li>
+			<li><a href="javascript:;" class="menu_focus22"></a></li>
+			<li><a href="javascript:;" class="menu_focus3"></a></li>
+			<li><a href="javascript:;" class="menu_focus4" id="menu_focus4"></a></li>
+			<li class="menu_focus_cn"><a href="javascript:;" class="menu_focus5"></a></li>
+		</ul>
+	</div>
+</div>
+
+<!--查找-->
+<div class="window_cz eqq_window" style="display:none;" id="window_cz">
+	<div  class="window_bg_container">	</div>
+	<div class="window_titleBar" id="window_titleBar_cz">	
+		<div class="window_titleButtonBar">
+			<a  class="  window_close" title="关闭"  href="javascript:void(0);" style="display: block;" id="window_close_cz"></a>
+		</div>	
+		<div class="window_title titleText" >添加好友</div>			
+	</div>
+	<div  class="sIpBox" id="sIpBox">
+		<form id="searchFriend" method="post">
+			<p class="sIpBox_Txt">帐号：</p>		
+			<input type="text" class="searchInput gray" name ="U_loginID" onblur="if (value ==''){value='请输入对方数字帐号';}" onfocus="if (value =='请输入对方数字帐号'){value =''}" value="请输入对方数字帐号" >	
+			<p  class="sIpBox_tips" style="display: none;"></p>		
+			<p class="sIpBox_Txt" style="display: none;">昵称：</p>				
+			<input type="text" class="searchInput gray" value="请输入对方昵称" name ="U_nickname" style="display: none;">
+		</form>
+	</div>
+	<div class="window_controlArea" style="display: block;">	
+		<a class=" window_button window_cancel" title=""  href="javascript:void(0);" style="display: block;" id="window_cancel">取消</a>
+		<a  class=" window_button window_next" title=""  href="javascript:void(0);" style="display: block;" id="window_next">添加</a>
+	</div>
+
+</div>
+<!--QQ面板-->
+<div  class="window_QQ " id="Q_person" style="display:none;">
+</div>
+<!--QQ窗口缩小-->
+<div class="bottomBar" id="bottomBar" style="z-index: 12;display:none; " >
+	<div id="taskNextBox" class="taskNextBox"  style="display: none;">
+		<a  id="taskNext" class="taskNext" href="javascript:void(0);"></a>
+	</div>				
+	<div  class="taskContainer" style="width: 114px;">
+		<div  class="taskContainerInner" style="margin-right: 0px; width: 114px;">
+		<div  class="taskGroup taskGroupAnaWidth taskCurrent " id="taskCurrent">
+			<div class="taskItemBox" style="display: block;">
+					<a  class="taskItem taskItem_hidden" href="javascript:void(0);"  title="QQ">
+						<div class="taskItemIcon"><img src="images/mid.png">
+							<div class="taskItemIconState"></div>							
+						</div>				
+						<div class="taskItemTxt">QQ</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>		
+	
+	<div id="taskPreBox" class="taskPreBox"  style="display: none;">
+		<a  id="taskPre" class="taskPre" href="javascript:void(0);" ></a>
+	</div>
+</div>
+<!--底部阴影-->
+<div class="bottomBarBgTask"></div>
+<!--QQ注册-->
+<div class="re_ui_boxy"  id ="re_ui_boxy" style="display: none; width: 380px; height: 444px; z-index: 1000; left: 482px; top: 0px; ">
+	<div style="position:relative; z-index:1;">
+		<div id="re_ui_boxyClose" class="ui_boxyClose"></div>
+	</div>		   
+	<div class="login_content_area" >
+			<div class="login_logo_qq re_login_logo_qq" id="re_login_logo_qq" ></div>
+			<div class="signin">
+				<form method="post" name="myform" action="reg_ok.php" id="myform_regs">
+					<div class="subcolumn02">
+						<div class="signin-area">
+							<div class="signin-area-bg">
+								<div class="padder">
+										<div class="err_m" style="display:none" id="re_err_m">请输入正确的帐号！</div>
+										<div class="sign-input"><span class="title-defined account">帐&#12288;号：</span>
+											<span class="input">
+												<input type="text" onblur="if (value ==''){value='请填写帐号(6-10数字)';}" onfocus="if (value =='请填写帐号(6-10数字)'){value =''}" value="请填写帐号(6-10数字)"  class="input01"  name="U_loginID"/>
+											</span>
+										</div>
+										<div class="sign-input"><span class="title-defined password">密&#12288;码：</span>
+											<span class="input">
+												<input type="password" onfocus=";" class="input01" maxlength="16"  name="U_passWord"/>
+											</span>
+										</div>
+										<div class="sign-input"><span class="title-defined password">密&#12288;码：</span>
+											<span class="input">
+												<input type="password" onfocus=";" class="input01" maxlength="16"  name="U_repassWord"/>
+											</span>
+										</div>
+										<div class="sign-input"><span class="title-defined password">昵&#12288;称：</span>
+											<span class="input">
+												<input type="text" onfocus=";" class="input01" maxlength="16"  name="U_nickname"/>
+											</span>
+										</div>
+										<div class="clearer"></div>
+										<div style="display:block;" class="valcode" id="re_verifyinput">					
+										<div class="sign-input"><span class="title code">验证码：</span>
+											<span class="input">
+												<input type="text" maxlength="5" tabindex="3" value="" class="input01 validate" name="verifycode" id="re_verifycode" autocomplete="off">
+											</span>
+										</div>				
+										<div id="re_verifytip" class="verify_text" style="display: block;">输入下图中的字符，不区分大小写</div>
+										<div id="re_verifyshow" class="pic" style="display: block;">
+											<img width="130" height="53" onload="" src="getVerifyCode.php" id="re_imgVerify">
+											<a href="javascript:void(0);" id="re_changeimg_link">换一张</a>
+										</div>		
+								</div>
+							</div>
+						  </div>
+						</div>
+						<div class="clearer"></div>
+						<div class="subcolumn03">
+							<div class="left">
+								<div class="middle">
+									<div class="middle-padder">
+										<div class="logins">
+											<input type="buttom" id="reg_button" tabindex="6" value="" class="re-signin-btn signin2" name="reg_button">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				   </div>  
+			   </form>
+		   </div>
+	</div>	
+</div>
+<!--QQ登陆-->
+<div class="ui_boxy"  id ="ui_boxy" style=" width: 380px; height: 444px; z-index: 1000; left: 482px; top: 0px; display:none;">
+	<div style="position:relative; z-index:1;">
+		<div id="ui_boxyClose" class="ui_boxyClose"></div>
+	</div>		   
+	<div class="login_content_area" id="login_window_content_area">
+			<div class="login_logo_qq" id="login_logo_qq"></div>
+			<div class="signin">
+				<form method="post" name="myform" action="" id="myform">
+					<div class="subcolumn02">
+						<div class="signin-area">
+							<div class="signin-area-bg">
+								<div class="padder">
+										<div class="err_m" style="display:none" id="err_m">请输入正确的帐号！</div>
+										<div class="sign-input"><span class="title account">帐&#12288;号：</span>
+											<span class="input">
+												<input type="text" onblur="if (value ==''){value='请输入数字帐号';}" onfocus="if (value =='请输入数字帐号'){value =''}" value="请输入数字帐号"  class="input01"  name="U_loginID"/>
+											</span>
+										</div>
+										<div class="sign-input"><span class="title password">密&#12288;码：</span>
+											<span class="input">
+												<input type="password" onfocus=";" class="input01" maxlength="16"  name="U_passWord"/>
+											</span>
+										</div>
+										<div class="clearer"></div>
+										<div style="display:block;" class="valcode" id="verifyinput">					
+										<div class="sign-input"><span class="title code">验证码：</span>
+											<span class="input">
+												<input type="text" maxlength="5" tabindex="3" value="" class="input01 validate" name="verifycode" id="verifycode" autocomplete="off">
+											</span>
+										</div>				
+										<div id="verifytip" class="verify_text" style="display: block;">输入下图中的字符，不区分大小写</div>
+										<div id="verifyshow" class="pic" style="display: block;">
+											<img width="130" height="53" onload="" src="getVerifyCode.php" id="imgVerify">
+											<a href="javascript:void(0);" id="changeimg_link">换一张</a>
+										</div>		
+								</div>
+							</div>
+						  </div>
+						</div>
+						<div class="clearer"></div>
+						<div class="subcolumn03">
+							<div class="left">
+								<div class="middle">
+									<div class="middle-padder">
+										<div class="logins">
+											<input type="buttom" id="login_button"   class="signin-btn signin2" name="reg_button">
+											<div  class="signin-btn signin2 reg-btn" id="reg-btn" ></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				   </div>  
+			   </form>
+		   </div>
+	</div>	
+</div>
+
+</body>
+
+</html>
